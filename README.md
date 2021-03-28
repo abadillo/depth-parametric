@@ -30,7 +30,7 @@ xfade             | horizontal fade flag      | x
 yfade             | vertical fade flag        | y 
 finfo             | information panel flag    | i 
 saveScaleF        | save img scale multiplier |
-                  | save image                | p
+|                  | save image                | p
 ft(1-2-3)         | add/rem function          | 1-2-3
 
 
