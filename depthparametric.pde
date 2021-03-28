@@ -1,3 +1,5 @@
+// Antonio Badillo 2021
+
 // Note: when saving an img the process will freeze the program for 5 seconds or so, depending on your computer or the saveScaleF (factor) currently set to x4
 // also, the info panel on the top right will NOT appear on the saved image, so it is not necessary to turn it off
 
@@ -5,24 +7,24 @@
 float r = 50;                // initial radius for center function     [mouseY]
 float frq = 50;              // frequency multiplier                   [mouseX]
 float amp = 50;              // funtion amplitud multiplier            [q-e]
-int N = 7;                   // number of lines divided by two         [w-s]
-float scale = 1;             // horizontal width scaler                [a-d]
-float yoffset = 40;          // horizontal offset                      [↕]
-float xoffset = 0;           // vertical offset                        [↔] 
+int N = 7;                   // number of lines multiplied by 2 +      [w-s]
+float xmax = 1;              // horizontal width divider               [a-d]
+float yoffset = 40;          // vertical offset                        [↕]
+float xoffset = 0;           // horizontal offset                      [↔] 
 int tsize = 18;              // information panel text size            
 
-int saveScaleF = 4;        // Scale factor multiplier based on window dimentions
+int saveScaleF = 4;          // Scale factor multiplier based on window dimentions
 
 // flags
-boolean xfade = false;       //                                        [x]
-boolean yfade = true;        //                                        [y]
+boolean xfade = false;       // horizonal fade flag                    [x]
+boolean yfade = true;        // vertical fade flag                     [y]
 boolean finfo = true;        // information panel                      [i]
 
 boolean ft1 = true;          // funtion 1                              [1]
 boolean ft2 = false;         // funtion 2                              [2]
 boolean ft3 = false;         // funtion 3                              [3]
 
-// not variables
+// 
 float t = 0;
 float nr;      
 float x;
@@ -59,9 +61,9 @@ void _main (){
 
   r   =  map(mouseY, 0, height, 25, 500);
   frq =  map(mouseX, 0, width, 50, 1000);
-  t   =  -width/scale;
+  t   =  -width/xmax;
 
-  while (t <= width/scale) { 
+  while (t <= width/xmax) { 
 
     for (int n = -N; n <= N; n++) 
       drawCircle(n);   
@@ -84,7 +86,7 @@ void drawCircle(float n) {
   if (yfade)
     yalpha = 100/(abs(n)+0.4);                                               // tranparency funtion dependent also on the line number  
   if (xfade) 
-    xalpha = map( dist(abs(t), 0, width/scale, 0), 0, width/scale, 0, 1);    // tranparency multiplier calculated with the distance from circle center to invisible border (width/scale)
+    xalpha = map( dist(abs(t), 0, width/xmax, 0), 0, width/xmax, 0, 1);     // tranparency multiplier calculated with the distance from circle center to invisible border (width/xmax)
   
   
   noFill();
@@ -144,12 +146,12 @@ void keyPressed() {
   
     case 'a':
     case 'A': 
-      scale += 0.5;  
+      xmax += 0.5;  
       break;
     case 'd':
     case 'D': 
-      if (scale > 1)
-        scale -= 0.5;  
+      if (xmax > 1)
+        xmax -= 0.5;  
       break;
   
     case 'w':
@@ -220,8 +222,8 @@ void info () {
   text("frq[mX]: "    + frq            , width/2, -height/2+tsize*2);
   text("r[mY]: "      + r              , width/2, -height/2+tsize*3);
   text("amp[q-e]: "   + amp            , width/2, -height/2+tsize*4);
-  text("scale[a-d]: " + 1/scale        , width/2, -height/2+tsize*5);
-  text("N[w-s]:"      + (N*2)          , width/2, -height/2+tsize*6);
+  text("xmax[a-d]: "  + 1/xmax        , width/2, -height/2+tsize*5);
+  text("N[w-s]:"      + (N*2 + 1)          , width/2, -height/2+tsize*6);
   text("yoffset[↕]: " + yoffset        , width/2, -height/2+tsize*7);
   text("xoffset[↔]: " + xoffset        , width/2, -height/2+tsize*8);
   text("xfade[x]: "   + xfade          , width/2, -height/2+tsize*9);
@@ -253,7 +255,7 @@ void saveImg() {
   endRecord();
   
   String filename = year()+""+month()+""+day()+"_"+hour()+""+minute()+""+second()+"["+saveScaleF+"]";
-  pg.save(filename+".png");
+  pg.save("examples/" +filename+ ".png");
   //pg.save(filename+".tif");
   //pg.save(filename+".jpg");
   //pg.save(filename+".tga");
