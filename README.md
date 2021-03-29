@@ -1,16 +1,16 @@
 # Interactive Depth Parametric Graphs
 
-![Example](https://github.com/antonio2924/depth-parametric/blob/main/examples/2021326_185256[4].png)
+![Example](https://github.com/abadillo/depth-parametric/blob/main/examples/2021326_185256[4].png)
 
 
 This is an interactive parametric graph tool/playground where you can play with the variables to get really interesting results.
 
-This sketch was made using Processing 3, and can be run by downloading the file [depthparametric.pde](https://github.com/antonio2924/depth-parametric/blob/main/depthparametric.pde "depthparametric.pde").
+This sketch was made using Processing 3, and can be run by downloading the file [depthparametric.pde](https://github.com/abadillo/depth-parametric/blob/main/depthparametric.pde "depthparametric.pde").
 
 
 ## Examples
 
-![Montage](https://github.com/antonio2924/depth-parametric/blob/main/examples/montage.png)
+![Montage](https://github.com/abadillo/depth-parametric/blob/main/examples/montage.png)
 
 *None of the examples where digitaly altered, apart from cropping them to make this montage.*
 
